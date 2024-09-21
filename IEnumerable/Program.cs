@@ -32,6 +32,12 @@ class Program
             Console.WriteLine(c);
         }
 
+        //start with "from" in Line 1
+        //describe Condition in line 2
+        //return result with "select" in line 3
+        var Result = from c in test 
+                     where c.Contains("h")
+                     select c;
     }
 
 }
