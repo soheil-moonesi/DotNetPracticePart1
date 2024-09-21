@@ -9,6 +9,7 @@ public class TestCollection : IEnumerable
 
     // Required method for implementing IEnumerable
     // it is use for find and return next element in collection
+
     public IEnumerator GetEnumerator()
     {
         foreach (var c in Course)
