@@ -19,3 +19,13 @@ public class TestCollection : IEnumerable
     }
 }
 
+class Program
+{
+    static void Main(string[] args)
+    {
+
+
+
+    }
+
+}
