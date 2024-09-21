@@ -14,6 +14,8 @@ class Program
 
         var ResultByLambda = Persons.Where(c => c.Name.Contains("i"));
 
+        Console.WriteLine("-------ResultByLambda----");
+
         foreach (var c in ResultByLambda)
         {
             Console.WriteLine(c.Name);
@@ -22,19 +24,50 @@ class Program
         //use func overload 
         //Func get any type of input and can return any type of output.
         var ResultByFunc = Persons.Where(FindByFunc);
+        Console.WriteLine("-------ResultByFunc----");
 
         foreach (var c in ResultByFunc)
         {
+
             Console.WriteLine(c.Name);
         }
 
         //use func and index
         var ResultByFuncIndex = Persons.Where(FindByFuncIndex);
+        Console.WriteLine("-------ResultByFuncIndex----");
 
         foreach (var c in ResultByFuncIndex)
         {
+
             Console.WriteLine(c.Name);
         }
+
+
+        var ResultChainWhere = Persons.Where(c => c.Id > 1).Where(c => c.Name.Contains("s"));
+        Console.WriteLine("-------ResultChainWhere----");
+
+        foreach (var c in ResultChainWhere)
+        {
+            Console.WriteLine(c.Name);
+        }
+
+        var ResultFuncIndexLambda = Persons.Where((person, index) =>
+            {
+                if (index % 2 == 0)
+                {
+                    return true;
+                }
+                return false;
+            }
+        );
+        Console.WriteLine("-------ResultFuncIndexLambda----");
+
+        foreach (var c in ResultFuncIndexLambda)
+        {
+
+            Console.WriteLine(c.Name);
+        }
+
     }
 
     private static bool FindByFunc(Person person)
@@ -56,7 +89,7 @@ class Program
         return false;
     }
 
-
+    
 
 }
 
