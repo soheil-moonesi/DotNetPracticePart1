@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IEnumerable", "IEnumerable\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhereLINQ", "WhereLINQ\WhereLINQ.csproj", "{DD1D243B-D897-42BC-A1E1-227D09DE8613}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeferredAndImmediateExecution", "DeferredAndImmediateExecution\DeferredAndImmediateExecution.csproj", "{65F2D3EB-D4D5-4777-9640-7FCCDE77AE71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DD1D243B-D897-42BC-A1E1-227D09DE8613}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD1D243B-D897-42BC-A1E1-227D09DE8613}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD1D243B-D897-42BC-A1E1-227D09DE8613}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65F2D3EB-D4D5-4777-9640-7FCCDE77AE71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65F2D3EB-D4D5-4777-9640-7FCCDE77AE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65F2D3EB-D4D5-4777-9640-7FCCDE77AE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65F2D3EB-D4D5-4777-9640-7FCCDE77AE71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
