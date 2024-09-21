@@ -46,14 +46,22 @@ class Program
         //start with "from" in Line 1
         //describe Condition in line 2
         //return result with "select" in line 3
-        var Result = from c in test 
+        var ResultQuerySyntax = from c in test 
                      where c.Contains("h")
                      select c;
 
-        foreach (var c in Result)
+        foreach (var c in ResultQuerySyntax)
         {
             Console.WriteLine(c);
         }
+
+        var ResultMethodSyntax = test.Where(c => c.Contains("P"));
+
+        foreach (var c in ResultMethodSyntax)
+        {
+            Console.WriteLine(c);
+        }
+
     }
     
 }
