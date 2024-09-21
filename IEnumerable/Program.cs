@@ -24,7 +24,13 @@ class Program
     static void Main(string[] args)
     {
 
+        TestCollection test = new TestCollection();
 
+        //use foreach to console result
+        foreach (var c in test)
+        {
+            Console.WriteLine(c);
+        }
 
     }
 
