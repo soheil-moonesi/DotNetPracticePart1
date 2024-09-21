@@ -54,7 +54,10 @@ class Program
         {
             Console.WriteLine(c);
         }
-
+        //section 1 (DB set or any collection)
+        //section 2 (LINQ extention method)
+        //section 3 (lambda expression)
+        //section 4 (Condition)
         var ResultMethodSyntax = test.Where(c => c.Contains("P"));
 
         foreach (var c in ResultMethodSyntax)
