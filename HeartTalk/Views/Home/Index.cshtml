@@ -1,6 +1,15 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model IEnumerable<HeartTalk.Models.Note>
+
+@foreach (var note in Model)
+{
+    <div>
+        <p>@note.Content</p>
+        <p>Posted on: @note.DatePosted</p>
+    </div>
+}
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
