@@ -23,6 +23,15 @@ namespace TagHelperRazor.Controllers
         );
         }
 
+        [HttpPost]
+        [Route("Home/Index", Name = "IndexRoute")]
+        public IActionResult Index(Person person)
+        {
+            return View();
+        }
+
+
+
         public IActionResult Privacy()
         {
             return View();

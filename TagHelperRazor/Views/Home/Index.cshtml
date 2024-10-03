@@ -7,6 +7,23 @@
 @* @Html.LabelFor(m=>m.Name)
 @Html.TextBoxFor(m=>m.Name) *@
 
+
+@* 
+<form asp-controller="Home" asp-action="Index" method="post">
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name"/>
+
+</form> *@   
+
+<form asp-route="IndexRoute" method="post">
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+
+</form>
+
+
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
