@@ -16,10 +16,20 @@
 
 </form> *@   
 
-<form asp-route="IndexRoute" method="post">
+@* <form asp-route="IndexRoute" method="post">
 
     <label asp-for="Name"></label>
     <input asp-for="Name" />
+
+</form> *@
+
+
+<form method="post">
+
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    
+    <button asp-Route="IndexRoute">Send Data</button>
 
 </form>
 
