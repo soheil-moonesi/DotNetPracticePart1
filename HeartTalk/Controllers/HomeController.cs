@@ -33,9 +33,10 @@ namespace HeartTalk.Controllers
         [Route("Home/Index", Name = "AddNote")]
         public  IActionResult Index(Note note)
         {
-            _DatabaseContext.Notes.Add(note);   
+            _DatabaseContext.Notes.Add(note);
+            //error: Cannot insert the value NULL into column
             _DatabaseContext.SaveChanges();
-            return View();
+            return View(); 
         }
 
 
