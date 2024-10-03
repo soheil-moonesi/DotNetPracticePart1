@@ -1,7 +1,17 @@
+using HeartTalk.Data;
+using Microsoft.EntityFrameworkCore;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddDbContext<HeartTalkAppContext>(options =>
+{
+    options.UseSqlServer(
+        "Data Source=.;Initial Catalog=HeartTalkDb;Integrated Security=True;TrustServerCertificate=True");
+});
 
 var app = builder.Build();
 
@@ -23,5 +33,6 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();

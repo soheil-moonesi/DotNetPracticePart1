@@ -1,21 +1,39 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using Microsoft.AspNetCore.Mvc.Routing
 @model IEnumerable<HeartTalk.Models.Note>
-
-@foreach (var note in Model)
-{
-    <div>
-        <p>@note.Content</p>
-        <p>Posted on: @note.DatePosted</p>
-    </div>
-}
-
 
 <div class="form-group">
     <label for="exampleFormControlTextarea1">Example textarea</label>
     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" dir="rtl"></textarea>
 </div>
+
+<div class="dropdown p-5">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        فیلتر نمایش
+    </button>
+    <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="@Url.Action("FilterNotesWithSympathyCount","Home")">تعداد همدلی</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="#">Something else here</a></li>
+    </ul>
+</div>
+
+
+
+@foreach (var note in Model)
+{
+    <div class="card mb-3">
+        <div class="card-body">
+            <p class="card-text" dir="rtl">@note.Content</p>
+            <p class="text-muted">Posted on: @note.DatePosted</p>
+            <p class="text-muted"> @note.SympathyCount</p>
+
+        </div>
+    </div>
+}
+
 
 
 <div class="text-center">

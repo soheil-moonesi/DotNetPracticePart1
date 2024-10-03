@@ -8,13 +8,15 @@ namespace HeartTalk.Controllers
 {
     public class HomeController : Controller
     {
-        public HeartTalkAppContext DatabaseContext = new HeartTalkAppContext();
+       // public HeartTalkAppContext DatabaseContext = new HeartTalkAppContext();
 
         private readonly ILogger<HomeController> _logger;
+        private readonly HeartTalkAppContext _DatabaseContext;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,HeartTalkAppContext DatabaseContext)
         {
             _logger = logger;
+            _DatabaseContext = DatabaseContext;
         }
 
         //public IActionResult Index()
@@ -24,9 +26,14 @@ namespace HeartTalk.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await DatabaseContext.Notes.ToListAsync());
+            return View(await _DatabaseContext.Notes.ToListAsync());
         }
 
+        public async Task<IActionResult> FilterNotesWithSympathyCount()
+        {
+           var FilterResult = await _DatabaseContext.Notes.OrderByDescending(x => x.SympathyCount).ToListAsync();
+            return View("Index",FilterResult);
+        }
 
         public IActionResult Privacy()
         {
