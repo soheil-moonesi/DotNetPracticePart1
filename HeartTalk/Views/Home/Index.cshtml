@@ -4,10 +4,12 @@
 @using Microsoft.AspNetCore.Mvc.Routing
 @model IEnumerable<HeartTalk.Models.Note>
 
-<div class="form-group">
-    <label for="exampleFormControlTextarea1">Example textarea</label>
-    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" dir="rtl"></textarea>
-</div>
+
+<form method="post" asp-route="AddNote">
+    <textarea class="form-control" id="TextArea1" rows="3" dir="rtl"></textarea>
+    <button type="submit">Send Heart Talk</button>
+</form>
+
 
 <div class="dropdown p-5">
     <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">

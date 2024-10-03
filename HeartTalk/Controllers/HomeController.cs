@@ -29,6 +29,16 @@ namespace HeartTalk.Controllers
             return View(await _DatabaseContext.Notes.ToListAsync());
         }
 
+        [HttpPost]
+        [Route("Home/Index", Name = "AddNote")]
+        public  IActionResult Index(Note note)
+        {
+            _DatabaseContext.Notes.Add(note);   
+            _DatabaseContext.SaveChanges();
+            return View();
+        }
+
+
         public async Task<IActionResult> FilterNotesWithSympathyCount()
         {
            var FilterResult = await _DatabaseContext.Notes.OrderByDescending(x => x.SympathyCount).ToListAsync();
