@@ -68,6 +68,19 @@ namespace HeartTalk.Controllers
             return View("Index",viewModel);
         }
 
+        [Route("Home/AddSympathy", Name = "AddSympathy")]
+        [HttpPost]
+        public async Task<IActionResult> AddSympathy(NoteViewModel Note)
+        {
+            var NoteId = await _DatabaseContext.Notes.FindAsync(Note.NewNote.Id);
+            NoteId.SympathyCount++;
+
+            _DatabaseContext.Notes.Update(NoteId);
+            _DatabaseContext.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
         public IActionResult Privacy()
         {
             return View();

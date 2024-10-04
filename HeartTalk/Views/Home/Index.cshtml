@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using System.IO.Compression
 @using Microsoft.AspNetCore.Mvc.Routing
 
 @* we must have just one model in page and because of this reason we create class to have both IEnumerable<HeartTalk.Models.Note> and Note *@
@@ -32,7 +33,10 @@
             <p class="card-text" dir="rtl">@note.Content</p>
             <p class="text-muted">Posted on: @note.DatePosted</p>
             <p class="text-muted"> @note.SympathyCount</p>
-
+            <form method="post">
+                <input asp-for="NewNote.Id"  value=@note.Id />
+                <button asp-route="AddSympathy">Like</button>
+            </form>
         </div>
     </div>
 }
