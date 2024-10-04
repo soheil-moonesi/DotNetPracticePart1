@@ -26,24 +26,46 @@ namespace HeartTalk.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View(await _DatabaseContext.Notes.ToListAsync());
+            var viewModel = new NoteViewModel()
+            {
+                Notes = await _DatabaseContext.Notes.ToListAsync(),
+                NewNote = new Note() // An empty note for form submission
+            };
+
+            return View(viewModel);
         }
 
-        [HttpPost]
         [Route("Home/Index", Name = "AddNote")]
-        public  IActionResult Index(Note note)
+        [HttpPost]
+        //send data from view but because of different class for sending and getting data from view to controller we have null error
+        public  IActionResult Index(NoteViewModel model)
         {
-            _DatabaseContext.Notes.Add(note);
+            Note PersonNote = new Note()
+            {
+                Content = model.NewNote.Content,
+                DatePosted = DateTime.Now,
+                SympathyCount = 0
+            };
+
+
+            _DatabaseContext.Notes.Add(PersonNote);
             //error: Cannot insert the value NULL into column
             _DatabaseContext.SaveChanges();
-            return View(); 
+            return RedirectToAction("Index");
         }
 
 
         public async Task<IActionResult> FilterNotesWithSympathyCount()
         {
            var FilterResult = await _DatabaseContext.Notes.OrderByDescending(x => x.SympathyCount).ToListAsync();
-            return View("Index",FilterResult);
+
+           var viewModel = new NoteViewModel()
+           {
+               Notes = FilterResult,
+           };
+
+
+            return View("Index",viewModel);
         }
 
         public IActionResult Privacy()
