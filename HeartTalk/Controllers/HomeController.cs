@@ -26,11 +26,13 @@ namespace HeartTalk.Controllers
 
         public async Task<IActionResult> Index()
         {
+
             var viewModel = new NoteViewModel()
             {
                 Notes = await _DatabaseContext.Notes.ToListAsync(),
                 NewNote = new Note() // An empty note for form submission
             };
+
 
             return View(viewModel);
         }
@@ -38,8 +40,9 @@ namespace HeartTalk.Controllers
         [Route("Home/Index", Name = "AddNote")]
         [HttpPost]
         //send data from view but because of different class for sending and getting data from view to controller we have null error
-        public  IActionResult Index(NoteViewModel model)
+        public async Task<IActionResult> Index(NoteViewModel model)
         {
+
             Note PersonNote = new Note()
             {
                 Content = model.NewNote.Content,
@@ -51,6 +54,8 @@ namespace HeartTalk.Controllers
             _DatabaseContext.Notes.Add(PersonNote);
             //error: Cannot insert the value NULL into column
             _DatabaseContext.SaveChanges();
+            await Task.Delay(5000);
+
             return RedirectToAction("Index");
         }
 

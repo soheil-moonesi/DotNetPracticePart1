@@ -1,0 +1,10 @@
+﻿@model HeartTalk.Models.Note
+
+<div class="card-body">
+    <p class="card-text" dir="rtl">@Model.Content</p>
+    <p class="text-muted">Posted on: @Model.DatePosted</p>
+    <p class="text-muted">Sympathy Count: @Model.SympathyCount</p>
+
+    <!-- Form to increment sympathy count using AJAX -->
+    <button class="btn btn-success" onclick="addSympathy(@Model.Id)">Like</button>
+</div>

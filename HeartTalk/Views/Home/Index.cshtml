@@ -34,7 +34,7 @@
             <p class="text-muted">Posted on: @note.DatePosted</p>
             <p class="text-muted"> @note.SympathyCount</p>
             <form method="post">
-                <input asp-for="NewNote.Id"  value=@note.Id />
+                <input asp-for="NewNote.Id" value=@note.Id />
                 <button asp-route="AddSympathy">Like</button>
             </form>
         </div>
