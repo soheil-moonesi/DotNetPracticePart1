@@ -28,16 +28,9 @@
 
 @foreach (var note in Model.Notes)
 {
-    <div class="card mb-3">
-        <div class="card-body">
-            <p class="card-text" dir="rtl">@note.Content</p>
-            <p class="text-muted">Posted on: @note.DatePosted</p>
-            <p class="text-muted"> @note.SympathyCount</p>
-            <form method="post">
-                <input asp-for="NewNote.Id" value=@note.Id />
-                <button asp-route="AddSympathy">Like</button>
-            </form>
-        </div>
+    //create dynamic id for each note , note-1,note-2 ,...
+    <div id="note-@note.Id" class="card mb-3">
+        @await Html.PartialAsync("_NotePartial", note)
     </div>
 }
 
@@ -47,3 +40,22 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    //name of addSympathy function is bind with sympathy button in _NotePartial
+    // use ajax to post from Client to server 
+    function addSympathy(noteId) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("AddSympathy", "Home")',
+            data: { noteId: noteId },
+            success: function (response) {
+                // Update the specific note's div with the updated partial view
+                // breakdown code 
+                $('#note-' + noteId).html(response);
+            },
+        });
+    }
+</script>

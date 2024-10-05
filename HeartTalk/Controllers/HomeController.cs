@@ -54,7 +54,6 @@ namespace HeartTalk.Controllers
             _DatabaseContext.Notes.Add(PersonNote);
             //error: Cannot insert the value NULL into column
             _DatabaseContext.SaveChanges();
-            await Task.Delay(5000);
 
             return RedirectToAction("Index");
         }
@@ -75,15 +74,17 @@ namespace HeartTalk.Controllers
 
         [Route("Home/AddSympathy", Name = "AddSympathy")]
         [HttpPost]
-        public async Task<IActionResult> AddSympathy(NoteViewModel Note)
+        public async Task<IActionResult> AddSympathy(int NoteId)
         {
-            var NoteId = await _DatabaseContext.Notes.FindAsync(Note.NewNote.Id);
-            NoteId.SympathyCount++;
+            var note = await _DatabaseContext.Notes.FindAsync(NoteId);
 
-            _DatabaseContext.Notes.Update(NoteId);
-            _DatabaseContext.SaveChanges();
+                note.SympathyCount++;
+                _DatabaseContext.Notes.Update(note); 
+                _DatabaseContext.SaveChangesAsync();
+            
 
-            return RedirectToAction("Index");
+            // Return the updated partial view for the note
+            return PartialView("_NotePartial", note);
         }
 
         public IActionResult Privacy()
