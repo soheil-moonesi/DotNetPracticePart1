@@ -87,6 +87,21 @@ namespace HeartTalk.Controllers
             return PartialView("_NotePartial", note);
         }
 
+        public async Task<IActionResult> FilterNotesWithDate()
+        {
+            var FilterResult = await _DatabaseContext.Notes.OrderByDescending(x => x.DatePosted).ToListAsync();
+
+            var viewModel = new NoteViewModel()
+            {
+                Notes = FilterResult,
+            };
+
+
+            return View("Index", viewModel);
+        }
+
+
+
         public IActionResult Privacy()
         {
             return View();
