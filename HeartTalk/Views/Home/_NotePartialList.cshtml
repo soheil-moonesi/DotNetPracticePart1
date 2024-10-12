@@ -1,0 +1,8 @@
+﻿@model IEnumerable<HeartTalk.Models.Note>
+
+    @foreach (var note in Model)
+    {
+        <div id="note-@note.Id" class="card mb-3">
+            @await Html.PartialAsync("_NotePartial", note)
+        </div>
+    }

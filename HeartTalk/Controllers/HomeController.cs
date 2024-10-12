@@ -24,18 +24,45 @@ namespace HeartTalk.Controllers
         //    return View();
         //}
 
-        public async Task<IActionResult> Index()
+        
+        public async Task<IActionResult> Index(int page=1)
         {
+            var skip = (page-1)*3;
 
             var viewModel = new NoteViewModel()
             {
-                Notes = await _DatabaseContext.Notes.ToListAsync(),
+                Notes = await _DatabaseContext.Notes
+                .Skip(skip)
+                .Take(3)
+                .ToListAsync(),
                 NewNote = new Note() // An empty note for form submission
             };
+
+            //var viewModel = new NoteViewModel()
+            //{
+            //    Notes = await _DatabaseContext.Notes.ToListAsync(),
+            //    NewNote = new Note() // An empty note for form submission
+            //};
 
 
             return View(viewModel);
         }
+
+
+        // New method for loading more notes via AJAX
+        [HttpGet]
+        public async Task<IActionResult> LoadMore(int page = 1)
+        {
+            var skip = (page - 1) * 3;
+
+            var notes = await _DatabaseContext.Notes
+                .Skip(skip)
+                .Take(3)
+                .ToListAsync();
+
+            return PartialView("_NotePartialList", notes); // New partial view for loading notes
+        }
+
 
         [Route("Home/Index", Name = "AddNote")]
         [HttpPost]
