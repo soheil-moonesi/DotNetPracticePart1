@@ -35,8 +35,10 @@ namespace HeartTalk.Controllers
                 .Skip(skip)
                 .Take(3)
                 .ToListAsync(),
+
                 NewNote = new Note() // An empty note for form submission
             };
+            _DatabaseContext.Notes.Include(p => p.Comments).ToList();
 
             //var viewModel = new NoteViewModel()
             //{
@@ -59,6 +61,8 @@ namespace HeartTalk.Controllers
                 .Skip(skip)
                 .Take(3)
                 .ToListAsync();
+
+             _DatabaseContext.Notes.Include(p => p.Comments).ToList();
 
             return PartialView("_NotePartialList", notes); // New partial view for loading notes
         }
@@ -117,7 +121,6 @@ namespace HeartTalk.Controllers
         public async Task<IActionResult> FilterNotesWithDate()
         {
             var FilterResult = await _DatabaseContext.Notes.OrderByDescending(x => x.DatePosted).ToListAsync();
-
             var viewModel = new NoteViewModel()
             {
                 Notes = FilterResult,

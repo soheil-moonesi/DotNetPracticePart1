@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HeartTalk.Migrations
 {
     [DbContext(typeof(HeartTalkAppContext))]
-    [Migration("20241015180943_AddComment")]
+    [Migration("20241015183822_AddComment")]
     partial class AddComment
     {
         /// <inheritdoc />
@@ -32,6 +32,9 @@ namespace HeartTalk.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("CommentSympathy")
+                        .HasColumnType("int");
 
                     b.Property<string>("CommentText")
                         .IsRequired()

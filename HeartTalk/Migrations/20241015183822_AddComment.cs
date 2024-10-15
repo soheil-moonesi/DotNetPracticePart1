@@ -33,7 +33,8 @@ namespace HeartTalk.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     CommentText = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    NoteId = table.Column<int>(type: "int", nullable: false)
+                    NoteId = table.Column<int>(type: "int", nullable: false),
+                    CommentSympathy = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

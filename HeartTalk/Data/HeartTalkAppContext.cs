@@ -18,8 +18,6 @@ namespace HeartTalk.Data
         {
             modelBuilder.Entity<Note>().HasMany(n => n.Comments).WithOne(c => c.Note).HasForeignKey(c => c.NoteId);
 
-
-
         }
 
 

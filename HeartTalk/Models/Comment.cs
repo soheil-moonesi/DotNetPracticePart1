@@ -9,5 +9,7 @@
 
         public Note Note { get; set; }
 
+        public int CommentSympathy { get; set; }
+
     }
 }

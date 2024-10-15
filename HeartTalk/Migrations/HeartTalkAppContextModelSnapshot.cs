@@ -30,6 +30,9 @@ namespace HeartTalk.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int>("CommentSympathy")
+                        .HasColumnType("int");
+
                     b.Property<string>("CommentText")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
