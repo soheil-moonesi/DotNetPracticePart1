@@ -12,5 +12,16 @@ namespace HeartTalk.Data
         }
 
         public DbSet<Note> Notes { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Note>().HasMany(n => n.Comments).WithOne(c => c.Note).HasForeignKey(c => c.NoteId);
+
+
+
+        }
+
+
     };
 }
