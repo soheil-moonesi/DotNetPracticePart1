@@ -8,7 +8,7 @@
     <!-- Form to increment sympathy count using AJAX -->
     <button class="btn btn-success" onclick="addSympathy(@Model.Id)">Like</button>
 
-
+    <div class="m-3">
     @if (Model.Comments != null && Model.Comments.Any())
     {
         <p class="text-muted">Comments:</p>
@@ -19,5 +19,12 @@
             }
         </ul>
     }
+    </div>
+    
+    <form method="post" asp-controller="Home" asp-action="AddComment">
+        <input type="hidden" name="Id" value="@Model.Id" />
+        <input type="text" name="CommentText" placeholder="Enter your comment" required />
+        <button type="submit">Send Heart Comment</button>
+    </form>
 
 </div>

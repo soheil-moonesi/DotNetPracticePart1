@@ -118,6 +118,27 @@ namespace HeartTalk.Controllers
             return PartialView("_NotePartial", note);
         }
 
+        [Route("Home/AddComment", Name = "AddComment")]
+        [HttpPost]
+        public async Task<IActionResult> AddComment(int Id, string CommentText)
+        {
+            var note = await _DatabaseContext.Notes.FindAsync(Id);
+            if (note != null)
+            {
+                var comment = new Comment
+                {
+                    NoteId = Id, // Assuming Comment has a NoteId property
+                    CommentText = CommentText,
+                    CommentSympathy = 0
+                };
+
+                _DatabaseContext.Comments.Add(comment);
+                await _DatabaseContext.SaveChangesAsync(); // Ensure to await async calls
+            }
+
+            return RedirectToAction("Index");
+        }
+
         public async Task<IActionResult> FilterNotesWithDate()
         {
             var FilterResult = await _DatabaseContext.Notes.OrderByDescending(x => x.DatePosted).ToListAsync();
