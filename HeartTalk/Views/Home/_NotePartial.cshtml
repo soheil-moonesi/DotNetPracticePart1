@@ -4,7 +4,20 @@
     <p class="card-text" dir="rtl">@Model.Content</p>
     <p class="text-muted">Posted on: @Model.DatePosted</p>
     <p class="text-muted">Sympathy Count: @Model.SympathyCount</p>
-
+    
     <!-- Form to increment sympathy count using AJAX -->
     <button class="btn btn-success" onclick="addSympathy(@Model.Id)">Like</button>
+
+
+    @if (Model.Comments != null && Model.Comments.Any())
+    {
+        <p class="text-muted">Comments:</p>
+        <ul>
+            @foreach (var comment in Model.Comments)
+            {
+                <li>@comment.CommentText</li>
+            }
+        </ul>
+    }
+
 </div>
